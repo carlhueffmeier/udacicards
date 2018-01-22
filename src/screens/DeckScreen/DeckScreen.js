@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getDeck } from 'src/redux/modules/decks';
 import { StyleSheet, Text, View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { SimpleButton } from 'src/components';
 import { getNumberOfCardsString } from 'src/helper/utils';
-import { grey, blue, green } from 'src/helper/colors';
+import { grey, black, white } from 'src/helper/colors';
 
 function DeckScreen(props) {
   const { deckId } = props.navigation.state.params;
@@ -13,21 +13,24 @@ function DeckScreen(props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{deckId}</Text>
-      <Text style={styles.subtitle}>{subtitle}</Text>
-      <Button
-        raised
-        icon={{ name: 'add' }}
-        title="ADD CARD"
-        backgroundColor={green}
-        onPress={() => navigate(`NewCard`, { deckId })}
-      />
-      <Button
-        raised
-        title="START QUIZ"
-        backgroundColor={blue}
-        onPress={() => navigate(`Quiz`, { deckId })}
-      />
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>{deckId}</Text>
+        <Text style={styles.subtitle}>{subtitle}</Text>
+      </View>
+      <View>
+        <SimpleButton
+          text="Add Card"
+          textStyle={{ color: black }}
+          buttonStyle={{ backgroundColor: white }}
+          onPress={() => navigate(`NewCard`, { deckId })}
+        />
+        <SimpleButton
+          text="Start Quiz"
+          textStyle={{ color: white }}
+          buttonStyle={{ backgroundColor: black }}
+          onPress={() => navigate(`Quiz`, { deckId })}
+        />
+      </View>
     </View>
   );
 }
@@ -44,12 +47,15 @@ export default connect(mapStateToProps)(DeckScreen);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
+    backgroundColor: white,
+    alignItems: `center`,
+    justifyContent: `space-around`
+  },
+  titleContainer: {
+    alignItems: `center`
   },
   title: {
-    fontSize: 36
+    fontSize: 64
   },
   subtitle: {
     fontSize: 24,

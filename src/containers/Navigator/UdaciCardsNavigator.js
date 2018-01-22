@@ -8,6 +8,7 @@ import {
   NewDeckScreen,
   NewCardScreen
 } from 'src/screens';
+import { black, white } from 'src/helper/colors';
 
 export default StackNavigator(
   {
@@ -35,13 +36,10 @@ export default StackNavigator(
   {
     headerMode: `screen`,
     navigationOptions: {
-      headerTitleStyle: {
-        color: `#fff`
-      },
       headerStyle: {
-        backgroundColor: '#333'
+        backgroundColor: black
       },
-      headerTintColor: `#fff`
+      headerTintColor: white
     }
   }
 );
