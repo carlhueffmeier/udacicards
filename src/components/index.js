@@ -1,1 +1,1 @@
-export MyStatusBar from './MyStatusBar/MyStatusBar';
+export SingleLineTextInput from './SingleLineTextInput/SingleLineTextInput';

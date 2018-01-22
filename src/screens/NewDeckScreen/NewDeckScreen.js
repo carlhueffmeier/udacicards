@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createDeck } from 'src/redux/modules/decks';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import { green } from 'src/helper/colors';
+import { SingleLineTextInput } from 'src/components';
 
 class NewDeckScreen extends Component {
   state = {
@@ -20,7 +21,7 @@ class NewDeckScreen extends Component {
   render() {
     return (
       <View>
-        <TextInput
+        <SingleLineTextInput
           placeholder="Name of new deck"
           onChangeText={newDeckTitle => this.setState({ newDeckTitle })}
         />

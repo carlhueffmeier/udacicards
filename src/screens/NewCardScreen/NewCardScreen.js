@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addCard } from 'src/redux/modules/decks';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import { green } from 'src/helper/colors';
+import { SingleLineTextInput } from 'src/components';
 
 class NewCardScreen extends Component {
   state = {
@@ -24,11 +25,11 @@ class NewCardScreen extends Component {
   render() {
     return (
       <View>
-        <TextInput
+        <SingleLineTextInput
           placeholder="Question"
           onChangeText={question => this.setState({ question })}
         />
-        <TextInput
+        <SingleLineTextInput
           placeholder="Answer"
           onChangeText={answer => this.setState({ answer })}
         />
