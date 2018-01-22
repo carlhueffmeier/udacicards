@@ -1,0 +1,4 @@
+{
+  "_comment": "This allows us to use absolute imports!",
+  "name": "src"
+}

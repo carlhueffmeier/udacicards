@@ -1,0 +1,47 @@
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+import {
+  DeckListScreen,
+  DeckScreen,
+  QuizScreen,
+  NewDeckScreen,
+  NewCardScreen
+} from 'src/screens';
+
+export default StackNavigator(
+  {
+    Home: {
+      screen: DeckListScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: `Decks`
+      })
+    },
+    Deck: {
+      screen: DeckScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: navigation.state.params.deckId
+      })
+    },
+    Quiz: {
+      screen: QuizScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: `${navigation.state.params.deckId} Quiz`
+      })
+    },
+    NewDeck: { screen: NewDeckScreen },
+    NewCard: { screen: NewCardScreen }
+  },
+  {
+    headerMode: `screen`,
+    navigationOptions: {
+      headerTitleStyle: {
+        color: `#fff`
+      },
+      headerStyle: {
+        backgroundColor: '#333'
+      },
+      headerTintColor: `#fff`
+    }
+  }
+);
