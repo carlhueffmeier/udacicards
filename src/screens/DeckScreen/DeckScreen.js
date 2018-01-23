@@ -26,8 +26,6 @@ function DeckScreen(props) {
         />
         <SimpleButton
           text="Start Quiz"
-          textStyle={{ color: white }}
-          buttonStyle={{ backgroundColor: black }}
           onPress={() => navigate(`Quiz`, { deckId })}
         />
       </View>

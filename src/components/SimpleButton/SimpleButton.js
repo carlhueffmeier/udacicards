@@ -16,7 +16,7 @@ export default function SimpleButton(props) {
 
 const styles = StyleSheet.create({
   defaultButtonStyle: {
-    backgroundColor: white,
+    backgroundColor: black,
     padding: 20,
     borderWidth: 1,
     borderRadius: 5,
@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
     margin: 5
   },
   defaultTextStyle: {
-    color: black,
-    fontSize: 20
+    color: white,
+    fontSize: 20,
+    fontWeight: `bold`
   }
 });

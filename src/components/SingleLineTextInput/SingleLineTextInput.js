@@ -2,9 +2,10 @@ import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 
 export default function SingleLineTextInput(props) {
+  const { textStyle = {}, containerStyle = {}, ...otherProps } = props;
   return (
-    <View style={styles.container}>
-      <TextInput style={styles.input} {...props} />
+    <View style={[styles.container, containerStyle]}>
+      <TextInput style={[styles.input, textStyle]} {...otherProps} />
     </View>
   );
 }
@@ -12,11 +13,12 @@ export default function SingleLineTextInput(props) {
 const styles = StyleSheet.create({
   container: {
     padding: 15,
-    borderWidth: 2,
+    borderWidth: 1,
     borderRadius: 10,
-    margin: 20
+    margin: 30,
+    alignSelf: `stretch`
   },
   input: {
-    fontSize: 30
+    fontSize: 20
   }
 });

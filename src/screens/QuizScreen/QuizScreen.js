@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getDeck } from 'src/redux/modules/decks';
 import { StyleSheet, Text, View } from 'react-native';
-import { Button } from 'react-native-elements';
-import { blue, green, red } from 'src/helper/colors';
+import { SimpleButton, TextButton, QuizResult } from 'src/components';
+import { blue, green, red, white } from 'src/helper/colors';
 
 class QuizScreen extends Component {
   state = {
@@ -12,8 +12,8 @@ class QuizScreen extends Component {
     showAnswer: false
   };
 
-  onShowAnswer() {
-    this.setState({ showAnswer: true });
+  onToggleAnswer() {
+    this.setState({ showAnswer: !this.state.showAnswer });
   }
 
   onCorrect() {
@@ -44,61 +44,81 @@ class QuizScreen extends Component {
     const { currentCardIndex, showAnswer, numberOfCorrectAnswers } = this.state;
     const { deck } = this.props;
 
-    console.log(`got some DECK here...`, deck);
     const totalNumberOfCards = deck.questions.length;
     if (currentCardIndex === totalNumberOfCards) {
       const percentageOfCorrectAnswers =
         numberOfCorrectAnswers / totalNumberOfCards * 100;
-      return <Text>Result: {percentageOfCorrectAnswers} %</Text>;
+      return <QuizResult result={percentageOfCorrectAnswers} />;
     }
 
     const currentCard = deck.questions[currentCardIndex];
     return (
       <View style={styles.container}>
-        <Text>
+        <Text style={styles.progressIndicator}>
           {currentCardIndex + 1} / {totalNumberOfCards}
         </Text>
-        <Text>{currentCard.question}</Text>
-        {showAnswer ? (
-          <Text>{currentCard.answer}</Text>
-        ) : (
-          <Button
-            raised
-            title="SHOW ANSWER"
-            backgroundColor={blue}
-            onPress={this.onShowAnswer.bind(this)}
+        <View style={styles.cardContainer}>
+          <Text style={styles.cardText}>
+            {showAnswer ? currentCard.answer : currentCard.question}
+          </Text>
+          <TextButton
+            style={styles.cardToggleAnswerButton}
+            text={showAnswer ? `Question` : `Answer`}
+            onPress={this.onToggleAnswer.bind(this)}
           />
-        )}
-        <Button
-          raised
-          title="CORRECT"
-          backgroundColor={green}
-          onPress={this.onCorrect.bind(this)}
-        />
-        <Button
-          raised
-          title="INCORRECT"
-          backgroundColor={red}
-          onPress={this.onIncorrect.bind(this)}
-        />
+        </View>
+        <View style={styles.buttons}>
+          <SimpleButton
+            text="Correct"
+            textStyle={{ color: white }}
+            buttonStyle={{ backgroundColor: green, borderColor: green }}
+            onPress={this.onCorrect.bind(this)}
+          />
+          <SimpleButton
+            text="Incorrect"
+            textStyle={{ color: white }}
+            buttonStyle={{ backgroundColor: red, borderColor: red }}
+            onPress={this.onIncorrect.bind(this)}
+          />
+        </View>
       </View>
     );
   }
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: `space-between`,
+    alignItems: `center`
+  },
+  progressIndicator: {
+    alignSelf: `flex-start`,
+    fontSize: 20
+  },
+  cardContainer: {
+    alignItems: `center`,
+    marginHorizontal: 20
+  },
+  cardText: {
+    fontSize: 28,
+    textAlign: `center`
+  },
+  cardToggleAnswerButton: {
+    color: red,
+    fontSize: 24,
+    marginTop: 24
+  },
+  buttons: {
+    marginVertical: 40
+  }
+});
+
 function mapStateToProps(state, ownProps) {
   const { deckId } = ownProps.navigation.state.params;
-  console.log(`mapping tooo `, deckId);
   return {
     deck: getDeck(state.decks, deckId)
   };
 }
 
 export default connect(mapStateToProps)(QuizScreen);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: `column`
-  }
-});

@@ -8,8 +8,9 @@ import {
   TouchableOpacity,
   FlatList
 } from 'react-native';
-import { List, ListItem, Button } from 'react-native-elements';
-import { green } from 'src/helper/colors';
+import { List, ListItem } from 'react-native-elements';
+import { SimpleButton } from 'src/components';
+import { white, black } from 'src/helper/colors';
 import { getNumberOfCardsString } from '../../helper/utils';
 
 class DeckListScreen extends Component {
@@ -31,18 +32,19 @@ class DeckListScreen extends Component {
       // Render list
       return (
         <View style={styles.container}>
-          <List style={styles.list}>
-            <FlatList
-              data={decks}
-              renderItem={this.renderDeckListItem.bind(this)}
-              keyExtractor={(item, index) => index}
-            />
-          </List>
-          <Button
-            raised
-            icon={{ name: 'add' }}
-            title="CREATE NEW DECK"
-            backgroundColor={green}
+          <View style={styles.list}>
+            <List>
+              <FlatList
+                data={decks}
+                renderItem={this.renderDeckListItem.bind(this)}
+                keyExtractor={(item, index) => index}
+              />
+            </List>
+          </View>
+          <SimpleButton
+            text="New Deck"
+            textStyle={{ color: black }}
+            buttonStyle={{ backgroundColor: white }}
             onPress={() => navigate(`NewDeck`)}
           />
         </View>
@@ -57,9 +59,12 @@ class DeckListScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: `column`
+    alignItems: `center`,
+    flexDirection: `column`,
+    backgroundColor: white
   },
   list: {
+    alignSelf: `stretch`,
     marginBottom: 10
   }
 });
