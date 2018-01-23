@@ -40,6 +40,14 @@ class QuizScreen extends Component {
     this.setState({ currentCardIndex: currentCardIndex + 1 });
   }
 
+  goBack() {
+    this.props.navigation.goBack();
+  }
+
+  restartQuiz() {
+    this.setState({ currentCardIndex: 0, numberOfCorrectAnswers: 0 });
+  }
+
   render() {
     const { currentCardIndex, showAnswer, numberOfCorrectAnswers } = this.state;
     const { deck } = this.props;
@@ -48,7 +56,13 @@ class QuizScreen extends Component {
     if (currentCardIndex === totalNumberOfCards) {
       const percentageOfCorrectAnswers =
         numberOfCorrectAnswers / totalNumberOfCards * 100;
-      return <QuizResult result={percentageOfCorrectAnswers} />;
+      return (
+        <QuizResult
+          result={percentageOfCorrectAnswers}
+          onBack={this.goBack.bind(this)}
+          onRestart={this.restartQuiz.bind(this)}
+        />
+      );
     }
 
     const currentCard = deck.questions[currentCardIndex];
@@ -89,14 +103,17 @@ class QuizScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: `space-between`,
-    alignItems: `center`
+    justifyContent: `center`,
+    alignItems: `center`,
+    backgroundColor: white
   },
   progressIndicator: {
     alignSelf: `flex-start`,
+    top: 0,
     fontSize: 20
   },
   cardContainer: {
+    flex: 1,
     alignItems: `center`,
     marginHorizontal: 20
   },
@@ -110,7 +127,7 @@ const styles = StyleSheet.create({
     marginTop: 24
   },
   buttons: {
-    marginVertical: 40
+    justifyContent: `center`
   }
 });
 
