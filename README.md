@@ -19,3 +19,7 @@ Refer to the [project rubric](https://review.udacity.com/#!/rubrics/1021/view) f
 7. Enter `yarn start` to run the app in development mode
 8. Open it in the [Expo app](https://expo.io/) on your phone or an emulator
 9. Enjoy
+
+## Compatability
+
+The app has been tested using Expo on an Android smartphone and an iPhone.
