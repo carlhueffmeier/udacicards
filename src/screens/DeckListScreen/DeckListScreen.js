@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAllDecks } from 'src/redux/modules/decks';
+import { getAllDecks, removeDeck } from 'src/redux/modules/decks';
 import {
   StyleSheet,
   Text,
@@ -10,20 +10,34 @@ import {
 } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { SimpleButton } from 'src/components';
-import { white, black } from 'src/helper/colors';
+import { white, black, red } from 'src/helper/colors';
 import { getNumberOfCardsString } from '../../helper/utils';
+import Swipeout from 'react-native-swipeout';
 
 class DeckListScreen extends Component {
   renderDeckListItem({ item: currentDeck }) {
     const { navigate } = this.props.navigation;
     const subtitle = getNumberOfCardsString(currentDeck);
+    const swipeButtons = [
+      {
+        text: `Delete`,
+        backgroundColor: red,
+        onPress: () => this.removeDeck(currentDeck.title)
+      }
+    ];
     return (
-      <ListItem
-        title={currentDeck.title}
-        subtitle={subtitle}
-        onPress={() => navigate(`Deck`, { deckId: currentDeck.title })}
-      />
+      <Swipeout right={swipeButtons} autoClose backgroundColor="transparent">
+        <ListItem
+          title={currentDeck.title}
+          subtitle={subtitle}
+          onPress={() => navigate(`Deck`, { deckId: currentDeck.title })}
+        />
+      </Swipeout>
     );
+  }
+
+  removeDeck(deckId) {
+    this.props.removeDeck(deckId);
   }
 
   render() {
@@ -75,4 +89,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(DeckListScreen);
+export default connect(mapStateToProps, { removeDeck })(DeckListScreen);

@@ -1,5 +1,5 @@
-const DECKS_CREATE = `DECKS_CREATE`;
-const DECKS_ADD_CARD = `DECKS_ADD_CARD`;
+import { omit } from 'ramda';
+import { createAction, handleActions } from 'redux-actions';
 
 const defaultData = {
   React: {
@@ -29,48 +29,31 @@ const defaultData = {
 
 // Actions
 
-export function createDeck(title) {
-  return {
-    type: DECKS_CREATE,
-    payload: {
-      title
-    }
-  };
-}
-
-export function addCard(deck, card) {
-  return {
-    type: DECKS_ADD_CARD,
-    payload: {
-      deck,
-      card
-    }
-  };
-}
+export const createDeck = createAction(`DECK_CREATE`);
+export const removeDeck = createAction(`DECK_REMOVE`);
+export const addCard = createAction(`DECK_ADD_CARD`, (deck, card) => ({
+  deck,
+  card
+}));
 
 // Reducer
-
-export default function decks(state = defaultData, action) {
-  switch (action.type) {
-    case DECKS_CREATE:
-      const { title } = action.payload;
-      return {
-        ...state,
-        [title]: createEmptyDeck(title)
-      };
-    case DECKS_ADD_CARD:
-      const { deck, card } = action.payload;
-      return {
-        ...state,
-        [deck]: {
-          ...state[deck],
-          questions: [...state[deck].questions, card]
-        }
-      };
-    default:
-      return state;
-  }
-}
+export default handleActions(
+  {
+    [createDeck]: (state, { payload: title }) => ({
+      ...state,
+      [title]: createEmptyDeck(title)
+    }),
+    [removeDeck]: (state, { payload: title }) => omit([title], state),
+    [addCard]: (state, { payload: { deck, card } }) => ({
+      ...state,
+      [deck]: {
+        ...state[deck],
+        questions: [...state[deck].questions, card]
+      }
+    })
+  },
+  defaultData
+);
 
 function createEmptyDeck(title) {
   return {
