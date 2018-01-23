@@ -21,7 +21,7 @@ class NewDeckScreen extends Component {
     return (
       <View style={styles.container}>
         <SingleLineTextInput
-          placeholder="new deck's name"
+          placeholder="name for your deck"
           onChangeText={newDeckTitle => this.setState({ newDeckTitle })}
         />
         <SimpleButton text="Create" onPress={this.onCreateDeck.bind(this)} />
@@ -30,8 +30,6 @@ class NewDeckScreen extends Component {
   }
 }
 
-export default connect(null, { createDeck })(NewDeckScreen);
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -39,3 +37,5 @@ const styles = StyleSheet.create({
     alignItems: `center`
   }
 });
+
+export default connect(null, { createDeck })(NewDeckScreen);

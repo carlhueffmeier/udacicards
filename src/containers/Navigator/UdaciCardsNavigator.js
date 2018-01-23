@@ -30,8 +30,11 @@ export default StackNavigator(
         title: `${navigation.state.params.deckId} Quiz`
       })
     },
-    NewDeck: { screen: NewDeckScreen },
-    NewCard: { screen: NewCardScreen }
+    NewDeck: {
+      screen: NewDeckScreen,
+      navigationOptions: { title: `New Deck` }
+    },
+    NewCard: { screen: NewCardScreen, navigationOptions: { title: `Add Card` } }
   },
   {
     headerMode: `screen`,
