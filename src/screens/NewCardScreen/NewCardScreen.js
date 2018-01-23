@@ -39,8 +39,6 @@ class NewCardScreen extends Component {
   }
 }
 
-export default connect(null, { addCard })(NewCardScreen);
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -48,3 +46,5 @@ const styles = StyleSheet.create({
     alignItems: `center`
   }
 });
+
+export default connect(null, { addCard })(NewCardScreen);

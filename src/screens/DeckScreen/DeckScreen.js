@@ -33,15 +33,6 @@ function DeckScreen(props) {
   );
 }
 
-function mapStateToProps(state, ownProps) {
-  const { deckId } = ownProps.navigation.state.params;
-  return {
-    deck: getDeck(state.decks, deckId)
-  };
-}
-
-export default connect(mapStateToProps)(DeckScreen);
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -60,3 +51,12 @@ const styles = StyleSheet.create({
     color: grey
   }
 });
+
+function mapStateToProps(state, ownProps) {
+  const { deckId } = ownProps.navigation.state.params;
+  return {
+    deck: getDeck(state.decks, deckId)
+  };
+}
+
+export default connect(mapStateToProps)(DeckScreen);
