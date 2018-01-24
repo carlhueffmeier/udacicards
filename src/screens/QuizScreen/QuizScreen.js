@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { getDeck } from 'src/redux/modules/decks';
 import { StyleSheet, Text, View } from 'react-native';
 import { SimpleButton, TextButton, QuizResult } from 'src/components';
-import { green, red, white } from 'src/helper/colors';
+import { green, red, white } from 'src/utils/colors';
 import {
   clearLocalNotification,
   setLocalNotification
-} from 'src/helper/notifications';
+} from 'src/utils/notifications';
 
 class QuizScreen extends Component {
   state = {

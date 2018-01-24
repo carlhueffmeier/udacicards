@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { SimpleButton } from 'src/components';
-import { black, white } from 'src/helper/colors';
+import { black, white } from 'src/utils/colors';
 
 export default function QuizResult({ result, onBack, onRestart }) {
   return (

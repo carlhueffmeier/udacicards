@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addCard } from 'src/redux/modules/decks';
 import { StyleSheet, Text, View } from 'react-native';
-import { white } from 'src/helper/colors';
 import { SimpleButton, SingleLineTextInput } from 'src/components';
+import { white } from 'src/utils/colors';
 
 class NewCardScreen extends Component {
   state = {

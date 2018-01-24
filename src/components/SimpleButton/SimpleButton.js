@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { black, white } from 'src/helper/colors';
+import { black, white } from 'src/utils/colors';
 
 export default function SimpleButton(props) {
   const { text, textStyle = {}, buttonStyle = {}, ...buttonProps } = props;

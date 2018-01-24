@@ -8,7 +8,7 @@ import {
   NewDeckScreen,
   NewCardScreen
 } from 'src/screens';
-import { black, white } from 'src/helper/colors';
+import { black, white } from 'src/utils/colors';
 
 export default StackNavigator(
   {

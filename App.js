@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { Root } from 'src/containers';
 import { configureStore } from 'src/store';
-import { setLocalNotification } from 'src/helper/notifications';
+import { setLocalNotification } from 'src/utils/notifications';
 
 const { store, persistor } = configureStore();
 

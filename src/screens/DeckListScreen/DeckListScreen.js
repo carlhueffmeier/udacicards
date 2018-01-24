@@ -9,10 +9,10 @@ import {
   FlatList
 } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
-import { SimpleButton } from 'src/components';
-import { white, black, red } from 'src/helper/colors';
-import { getNumberOfCardsString } from '../../helper/utils';
 import Swipeout from 'react-native-swipeout';
+import { SimpleButton } from 'src/components';
+import { white, black, red } from 'src/utils/colors';
+import { getNumberOfCardsString } from 'src/utils/helpers';
 
 class DeckListScreen extends Component {
   renderDeckListItem({ item: currentDeck }) {
