@@ -42,31 +42,30 @@ class DeckListScreen extends Component {
 
   render() {
     const { decks, navigation: { navigate } } = this.props;
-    if (this.props.decks) {
-      // Render list
-      return (
-        <View style={styles.container}>
-          <View style={styles.list}>
-            <List>
-              <FlatList
-                data={decks}
-                renderItem={this.renderDeckListItem.bind(this)}
-                keyExtractor={(item, index) => index}
-              />
-            </List>
-          </View>
-          <SimpleButton
-            text="New Deck"
-            textStyle={{ color: black }}
-            buttonStyle={{ backgroundColor: white }}
-            onPress={() => navigate(`NewDeck`)}
-          />
-        </View>
-      );
-    } else {
+    if (!decks) {
       // Loading
       return null;
     }
+    // Render list
+    return (
+      <View style={styles.container}>
+        <View style={styles.list}>
+          <List>
+            <FlatList
+              data={decks}
+              renderItem={this.renderDeckListItem.bind(this)}
+              keyExtractor={(item, index) => index}
+            />
+          </List>
+        </View>
+        <SimpleButton
+          text="New Deck"
+          textStyle={{ color: black }}
+          buttonStyle={{ backgroundColor: white }}
+          onPress={() => navigate(`NewDeck`)}
+        />
+      </View>
+    );
   }
 }
 
