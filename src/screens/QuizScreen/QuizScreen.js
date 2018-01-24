@@ -3,13 +3,18 @@ import { connect } from 'react-redux';
 import { getDeck } from 'src/redux/modules/decks';
 import { StyleSheet, Text, View } from 'react-native';
 import { SimpleButton, TextButton, QuizResult } from 'src/components';
-import { blue, green, red, white } from 'src/helper/colors';
+import { green, red, white } from 'src/helper/colors';
+import {
+  clearLocalNotification,
+  setLocalNotification
+} from 'src/helper/notifications';
 
 class QuizScreen extends Component {
   state = {
     currentCardIndex: 0,
     numberOfCorrectAnswers: 0,
-    showAnswer: false
+    showAnswer: false,
+    showResults: false
   };
 
   onToggleAnswer() {
@@ -32,7 +37,15 @@ class QuizScreen extends Component {
     if (currentCardIndex < deck.questions.length) {
       this.setState({ showAnswer: false });
       this.advanceCardIndex();
+    } else {
+      this.onQuizCompleted();
     }
+  }
+
+  onQuizCompleted() {
+    // Cancel notification for today and set a new one tomorrow
+    clearLocalNotification();
+    setLocalNotification();
   }
 
   advanceCardIndex() {
@@ -48,28 +61,38 @@ class QuizScreen extends Component {
     this.setState({ currentCardIndex: 0, numberOfCorrectAnswers: 0 });
   }
 
-  render() {
-    const { currentCardIndex, showAnswer, numberOfCorrectAnswers } = this.state;
-    const { deck } = this.props;
+  getTotalNumberOfCards() {
+    return this.props.deck.questions.length;
+  }
 
-    const totalNumberOfCards = deck.questions.length;
-    if (currentCardIndex === totalNumberOfCards) {
-      const percentageOfCorrectAnswers =
-        numberOfCorrectAnswers / totalNumberOfCards * 100;
+  isQuizCompleted() {
+    return this.state.currentCardIndex === this.getTotalNumberOfCards();
+  }
+
+  getPercentageOfCorrectAnswers() {
+    return (
+      this.state.numberOfCorrectAnswers / this.getTotalNumberOfCards() * 100
+    );
+  }
+
+  render() {
+    if (this.isQuizCompleted()) {
       return (
         <QuizResult
-          result={percentageOfCorrectAnswers}
+          result={this.getPercentageOfCorrectAnswers()}
           onBack={this.goBack.bind(this)}
           onRestart={this.restartQuiz.bind(this)}
         />
       );
     }
 
-    const currentCard = deck.questions[currentCardIndex];
+    const { currentCardIndex, showAnswer } = this.state;
+    const currentCard = this.props.deck.questions[currentCardIndex];
+
     return (
       <View style={styles.container}>
         <Text style={styles.progressIndicator}>
-          {currentCardIndex + 1} / {totalNumberOfCards}
+          {currentCardIndex + 1} / {this.getTotalNumberOfCards()}
         </Text>
         <View style={styles.cardContainer}>
           <Text style={styles.cardText}>
