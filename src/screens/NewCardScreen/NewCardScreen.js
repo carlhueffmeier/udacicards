@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { addCard } from 'src/redux/modules/decks';
 import { StyleSheet, Text, View } from 'react-native';
 import { SimpleButton, SingleLineTextInput } from 'src/components';
-import { secondaryColor } from 'src/utils/colors';
+import { buttonStyles } from 'src/utils/commonStyles';
+import styles from './styles';
 
 class NewCardScreen extends Component {
   static propTypes = {
@@ -39,18 +40,14 @@ class NewCardScreen extends Component {
           placeholder="answer"
           onChangeText={answer => this.setState({ answer })}
         />
-        <SimpleButton text="Add Card" onPress={this.onAddCard.bind(this)} />
+        <SimpleButton
+          {...buttonStyles.primary}
+          text="Add Card"
+          onPress={this.onAddCard.bind(this)}
+        />
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: secondaryColor,
-    alignItems: `center`
-  }
-});
 
 export default connect(null, { addCard })(NewCardScreen);

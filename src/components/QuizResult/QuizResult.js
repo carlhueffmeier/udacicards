@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import { SimpleButton } from 'src/components';
-import { primaryColor, secondaryColor } from 'src/utils/colors';
+import { buttonStyles } from 'src/utils/commonStyles';
+import styles from './styles';
 
 QuizResult.propTypes = {
   result: PropTypes.number.isRequired,
@@ -19,29 +20,12 @@ export default function QuizResult({ result, onBack, onRestart }) {
       </View>
       <View>
         <SimpleButton
+          {...buttonStyles.secondary}
           text="Restart"
-          textStyle={{ color: primaryColor }}
-          buttonStyle={{ backgroundColor: secondaryColor }}
           onPress={onRestart}
         />
-        <SimpleButton text="Back" onPress={onBack} />
+        <SimpleButton {...buttonStyles.primary} text="Back" onPress={onBack} />
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: `space-around`,
-    alignItems: `center`,
-    backgroundColor: secondaryColor
-  },
-  text: {
-    fontSize: 20
-  },
-  result: {
-    fontSize: 48,
-    fontWeight: `bold`
-  }
-});

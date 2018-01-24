@@ -8,7 +8,7 @@ import {
   NewDeckScreen,
   NewCardScreen
 } from 'src/screens';
-import { primaryColor, secondaryColor } from 'src/utils/colors';
+import { primaryColor, backgroundColor } from 'src/utils/colors';
 
 export default StackNavigator(
   {
@@ -42,7 +42,7 @@ export default StackNavigator(
       headerStyle: {
         backgroundColor: primaryColor
       },
-      headerTintColor: secondaryColor
+      headerTintColor: backgroundColor
     }
   }
 );

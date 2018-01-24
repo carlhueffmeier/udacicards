@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { createDeck } from 'src/redux/modules/decks';
 import { StyleSheet, Text, View } from 'react-native';
 import { SimpleButton, SingleLineTextInput } from 'src/components';
-import { secondaryColor } from 'src/utils/colors';
+import { buttonStyles } from 'src/utils/commonStyles';
+import styles from './styles';
 
 class NewDeckScreen extends Component {
   static propTypes = {
@@ -29,18 +30,14 @@ class NewDeckScreen extends Component {
           placeholder="name for your deck"
           onChangeText={newDeckTitle => this.setState({ newDeckTitle })}
         />
-        <SimpleButton text="Create" onPress={this.onCreateDeck.bind(this)} />
+        <SimpleButton
+          {...buttonStyles.primary}
+          text="Create"
+          onPress={this.onCreateDeck.bind(this)}
+        />
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: secondaryColor,
-    alignItems: `center`
-  }
-});
 
 export default connect(null, { createDeck })(NewDeckScreen);

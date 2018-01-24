@@ -4,11 +4,12 @@ import { connect } from 'react-redux';
 import { getDeck } from 'src/redux/modules/decks';
 import { StyleSheet, Text, View } from 'react-native';
 import { SimpleButton, TextButton, QuizResult } from 'src/components';
-import { positiveColor, negativeColor, secondaryColor } from 'src/utils/colors';
+import { buttonStyles } from 'src/utils/commonStyles';
 import {
   clearLocalNotification,
   setLocalNotification
 } from 'src/utils/notifications';
+import styles from './styles';
 
 class QuizScreen extends Component {
   static propTypes = {
@@ -67,10 +68,6 @@ class QuizScreen extends Component {
     this.setState({ currentCardIndex: 0, numberOfCorrectAnswers: 0 });
   }
 
-  getTotalNumberOfCards() {
-    return this.props.deck.questions.length;
-  }
-
   isQuizCompleted() {
     return this.state.currentCardIndex === this.getTotalNumberOfCards();
   }
@@ -79,6 +76,10 @@ class QuizScreen extends Component {
     return (
       this.state.numberOfCorrectAnswers / this.getTotalNumberOfCards() * 100
     );
+  }
+
+  getTotalNumberOfCards() {
+    return this.props.deck.questions.length;
   }
 
   render() {
@@ -110,23 +111,15 @@ class QuizScreen extends Component {
             onPress={this.onToggleAnswer.bind(this)}
           />
         </View>
-        <View style={styles.buttons}>
+        <View style={styles.buttonContainer}>
           <SimpleButton
             text="Correct"
-            textStyle={{ color: secondaryColor }}
-            buttonStyle={{
-              backgroundColor: positiveColor,
-              borderColor: positiveColor
-            }}
+            {...buttonStyles.correct}
             onPress={this.onCorrect.bind(this)}
           />
           <SimpleButton
             text="Incorrect"
-            textStyle={{ color: secondaryColor }}
-            buttonStyle={{
-              backgroundColor: negativeColor,
-              borderColor: negativeColor
-            }}
+            {...buttonStyles.incorrect}
             onPress={this.onIncorrect.bind(this)}
           />
         </View>
@@ -134,38 +127,6 @@ class QuizScreen extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: `space-around`,
-    alignItems: `center`,
-    backgroundColor: secondaryColor
-  },
-  progressIndicator: {
-    alignSelf: `flex-start`,
-    flex: 1,
-    fontSize: 20
-  },
-  cardContainer: {
-    flex: 1,
-    alignItems: `center`,
-    marginHorizontal: 20
-  },
-  cardText: {
-    fontSize: 28,
-    textAlign: `center`
-  },
-  cardToggleAnswerButton: {
-    color: negativeColor,
-    fontSize: 24,
-    marginTop: 24
-  },
-  buttons: {
-    flex: 2,
-    justifyContent: `center`
-  }
-});
 
 function mapStateToProps(state, ownProps) {
   const { deckId } = ownProps.navigation.state.params;

@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { getDeck } from 'src/redux/modules/decks';
 import { StyleSheet, Text, View } from 'react-native';
 import { SimpleButton } from 'src/components';
+import { buttonStyles } from 'src/utils/commonStyles';
 import { getNumberOfCardsString } from 'src/utils/helpers';
-import { grey, primaryColor, secondaryColor } from 'src/utils/colors';
+import styles from './styles';
 
 DeckScreen.propTypes = {
   deck: PropTypes.object.isRequired,
@@ -26,13 +27,13 @@ function DeckScreen(props) {
       <View>
         <SimpleButton
           text="Add Card"
-          textStyle={{ color: primaryColor }}
-          buttonStyle={{ backgroundColor: secondaryColor }}
+          {...buttonStyles.secondary}
           onPress={() => navigate(`NewCard`, { deckId })}
         />
         {props.deck.questions.length > 0 && (
           <SimpleButton
             text="Start Quiz"
+            {...buttonStyles.primary}
             onPress={() => navigate(`Quiz`, { deckId })}
           />
         )}
@@ -40,25 +41,6 @@ function DeckScreen(props) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: secondaryColor,
-    alignItems: `center`,
-    justifyContent: `space-around`
-  },
-  titleContainer: {
-    alignItems: `center`
-  },
-  title: {
-    fontSize: 64
-  },
-  subtitle: {
-    fontSize: 24,
-    color: grey
-  }
-});
 
 function mapStateToProps(state, ownProps) {
   const { deckId } = ownProps.navigation.state.params;

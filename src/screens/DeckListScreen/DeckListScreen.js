@@ -12,8 +12,10 @@ import {
 import { List, ListItem } from 'react-native-elements';
 import Swipeout from 'react-native-swipeout';
 import { SimpleButton } from 'src/components';
-import { secondaryColor, primaryColor, red } from 'src/utils/colors';
+import { buttonStyles } from 'src/utils/commonStyles';
 import { getNumberOfCardsString } from 'src/utils/helpers';
+import { negativeColor } from 'src/utils/colors';
+import styles from './styles';
 
 class DeckListScreen extends Component {
   static propTypes = {
@@ -28,7 +30,7 @@ class DeckListScreen extends Component {
     const swipeButtons = [
       {
         text: `Delete`,
-        backgroundColor: red,
+        backgroundColor: negativeColor,
         onPress: () => this.removeDeck(currentDeck.title)
       }
     ];
@@ -67,27 +69,13 @@ class DeckListScreen extends Component {
         </View>
         <SimpleButton
           text="New Deck"
-          textStyle={{ color: primaryColor }}
-          buttonStyle={{ backgroundColor: secondaryColor }}
+          {...buttonStyles.secondary}
           onPress={() => navigate(`NewDeck`)}
         />
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: `center`,
-    flexDirection: `column`,
-    backgroundColor: secondaryColor
-  },
-  list: {
-    alignSelf: `stretch`,
-    marginBottom: 10
-  }
-});
 
 function mapStateToProps(state) {
   return {

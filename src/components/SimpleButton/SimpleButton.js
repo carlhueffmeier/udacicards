@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { primaryColor, secondaryColor } from 'src/utils/colors';
+import { View, TouchableOpacity, Text } from 'react-native';
+import styles from './styles';
 
 SimpleButton.propTypes = {
   text: PropTypes.string.isRequired,
@@ -20,21 +20,3 @@ export default function SimpleButton(props) {
     </TouchableOpacity>
   );
 }
-
-const styles = StyleSheet.create({
-  defaultButtonStyle: {
-    backgroundColor: primaryColor,
-    padding: 20,
-    borderWidth: 1,
-    borderRadius: 5,
-    width: 200,
-    justifyContent: `center`,
-    alignItems: `center`,
-    margin: 5
-  },
-  defaultTextStyle: {
-    color: secondaryColor,
-    fontSize: 20,
-    fontWeight: `bold`
-  }
-});
