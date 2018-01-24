@@ -126,13 +126,13 @@ class QuizScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: `center`,
+    justifyContent: `space-around`,
     alignItems: `center`,
     backgroundColor: white
   },
   progressIndicator: {
     alignSelf: `flex-start`,
-    top: 0,
+    flex: 1,
     fontSize: 20
   },
   cardContainer: {
@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
     marginTop: 24
   },
   buttons: {
+    flex: 2,
     justifyContent: `center`
   }
 });

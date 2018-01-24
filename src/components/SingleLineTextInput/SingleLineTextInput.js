@@ -5,7 +5,11 @@ export default function SingleLineTextInput(props) {
   const { textStyle = {}, containerStyle = {}, ...otherProps } = props;
   return (
     <View style={[styles.container, containerStyle]}>
-      <TextInput style={[styles.input, textStyle]} {...otherProps} />
+      <TextInput
+        style={[styles.input, textStyle]}
+        {...otherProps}
+        underlineColorAndroid="transparent"
+      />
     </View>
   );
 }
