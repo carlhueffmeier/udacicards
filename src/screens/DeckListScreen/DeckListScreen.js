@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAllDecks, removeDeck } from 'src/redux/modules/decks';
 import {
@@ -15,6 +16,12 @@ import { white, black, red } from 'src/utils/colors';
 import { getNumberOfCardsString } from 'src/utils/helpers';
 
 class DeckListScreen extends Component {
+  static propTypes = {
+    decks: PropTypes.array.isRequired,
+    navigation: PropTypes.object.isRequired,
+    removeDeck: PropTypes.func.isRequired
+  };
+
   renderDeckListItem({ item: currentDeck }) {
     const { navigate } = this.props.navigation;
     const subtitle = getNumberOfCardsString(currentDeck);

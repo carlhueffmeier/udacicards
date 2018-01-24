@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createDeck } from 'src/redux/modules/decks';
 import { StyleSheet, Text, View } from 'react-native';
@@ -6,13 +7,17 @@ import { SimpleButton, SingleLineTextInput } from 'src/components';
 import { white } from 'src/utils/colors';
 
 class NewDeckScreen extends Component {
+  static propTypes = {
+    navigation: PropTypes.object.isRequired,
+    createDeck: PropTypes.func.isRequired
+  };
+
   state = {
     newDeckTitle: ``
   };
 
   onCreateDeck() {
     const { newDeckTitle } = this.state;
-    console.log(createDeck('test'));
     this.props.createDeck(newDeckTitle);
     this.props.navigation.goBack();
   }

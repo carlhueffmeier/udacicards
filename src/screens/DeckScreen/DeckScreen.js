@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getDeck } from 'src/redux/modules/decks';
 import { StyleSheet, Text, View } from 'react-native';
@@ -6,10 +7,15 @@ import { SimpleButton } from 'src/components';
 import { getNumberOfCardsString } from 'src/utils/helpers';
 import { grey, black, white } from 'src/utils/colors';
 
+DeckScreen.propTypes = {
+  deck: PropTypes.object.isRequired,
+  navigation: PropTypes.object.isRequired
+};
+
 function DeckScreen(props) {
   const { deckId } = props.navigation.state.params;
   const { navigate } = props.navigation;
-  const subtitle = props.deck ? getNumberOfCardsString(props.deck) : ``;
+  const subtitle = getNumberOfCardsString(props.deck);
 
   return (
     <View style={styles.container}>

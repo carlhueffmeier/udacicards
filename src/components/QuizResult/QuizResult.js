@@ -1,7 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
 import { SimpleButton } from 'src/components';
 import { black, white } from 'src/utils/colors';
+
+QuizResult.propTypes = {
+  result: PropTypes.number.isRequired,
+  onBack: PropTypes.func.isRequired,
+  onRestart: PropTypes.func.isRequired
+};
 
 export default function QuizResult({ result, onBack, onRestart }) {
   return (

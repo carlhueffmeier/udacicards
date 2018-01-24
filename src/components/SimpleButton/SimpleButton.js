@@ -1,6 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { black, white } from 'src/utils/colors';
+
+SimpleButton.propTypes = {
+  text: PropTypes.string.isRequired,
+  textStyle: PropTypes.object,
+  buttonStyle: PropTypes.object
+};
 
 export default function SimpleButton(props) {
   const { text, textStyle = {}, buttonStyle = {}, ...buttonProps } = props;

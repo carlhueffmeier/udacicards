@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getDeck } from 'src/redux/modules/decks';
 import { StyleSheet, Text, View } from 'react-native';
@@ -10,6 +11,11 @@ import {
 } from 'src/utils/notifications';
 
 class QuizScreen extends Component {
+  static propTypes = {
+    deck: PropTypes.object.isRequired,
+    navigation: PropTypes.object.isRequired
+  };
+
   state = {
     currentCardIndex: 0,
     numberOfCorrectAnswers: 0,

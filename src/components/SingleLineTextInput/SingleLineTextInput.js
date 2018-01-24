@@ -1,5 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, TextInput, StyleSheet } from 'react-native';
+
+SingleLineTextInput.propTypes = {
+  textStyle: PropTypes.object,
+  containerStyle: PropTypes.object
+};
 
 export default function SingleLineTextInput(props) {
   const { textStyle = {}, containerStyle = {}, ...otherProps } = props;
