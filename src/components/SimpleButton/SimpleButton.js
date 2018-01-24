@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { black, white } from 'src/utils/colors';
+import { primaryColor, secondaryColor } from 'src/utils/colors';
 
 SimpleButton.propTypes = {
   text: PropTypes.string.isRequired,
@@ -23,7 +23,7 @@ export default function SimpleButton(props) {
 
 const styles = StyleSheet.create({
   defaultButtonStyle: {
-    backgroundColor: black,
+    backgroundColor: primaryColor,
     padding: 20,
     borderWidth: 1,
     borderRadius: 5,
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     margin: 5
   },
   defaultTextStyle: {
-    color: white,
+    color: secondaryColor,
     fontSize: 20,
     fontWeight: `bold`
   }

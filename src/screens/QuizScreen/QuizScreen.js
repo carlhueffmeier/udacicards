@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getDeck } from 'src/redux/modules/decks';
 import { StyleSheet, Text, View } from 'react-native';
 import { SimpleButton, TextButton, QuizResult } from 'src/components';
-import { green, red, white } from 'src/utils/colors';
+import { positiveColor, negativeColor, secondaryColor } from 'src/utils/colors';
 import {
   clearLocalNotification,
   setLocalNotification
@@ -113,14 +113,20 @@ class QuizScreen extends Component {
         <View style={styles.buttons}>
           <SimpleButton
             text="Correct"
-            textStyle={{ color: white }}
-            buttonStyle={{ backgroundColor: green, borderColor: green }}
+            textStyle={{ color: secondaryColor }}
+            buttonStyle={{
+              backgroundColor: positiveColor,
+              borderColor: positiveColor
+            }}
             onPress={this.onCorrect.bind(this)}
           />
           <SimpleButton
             text="Incorrect"
-            textStyle={{ color: white }}
-            buttonStyle={{ backgroundColor: red, borderColor: red }}
+            textStyle={{ color: secondaryColor }}
+            buttonStyle={{
+              backgroundColor: negativeColor,
+              borderColor: negativeColor
+            }}
             onPress={this.onIncorrect.bind(this)}
           />
         </View>
@@ -134,7 +140,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: `space-around`,
     alignItems: `center`,
-    backgroundColor: white
+    backgroundColor: secondaryColor
   },
   progressIndicator: {
     alignSelf: `flex-start`,
@@ -151,7 +157,7 @@ const styles = StyleSheet.create({
     textAlign: `center`
   },
   cardToggleAnswerButton: {
-    color: red,
+    color: negativeColor,
     fontSize: 24,
     marginTop: 24
   },

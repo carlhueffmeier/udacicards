@@ -12,7 +12,7 @@ import {
 import { List, ListItem } from 'react-native-elements';
 import Swipeout from 'react-native-swipeout';
 import { SimpleButton } from 'src/components';
-import { white, black, red } from 'src/utils/colors';
+import { secondaryColor, primaryColor, red } from 'src/utils/colors';
 import { getNumberOfCardsString } from 'src/utils/helpers';
 
 class DeckListScreen extends Component {
@@ -67,8 +67,8 @@ class DeckListScreen extends Component {
         </View>
         <SimpleButton
           text="New Deck"
-          textStyle={{ color: black }}
-          buttonStyle={{ backgroundColor: white }}
+          textStyle={{ color: primaryColor }}
+          buttonStyle={{ backgroundColor: secondaryColor }}
           onPress={() => navigate(`NewDeck`)}
         />
       </View>
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: `center`,
     flexDirection: `column`,
-    backgroundColor: white
+    backgroundColor: secondaryColor
   },
   list: {
     alignSelf: `stretch`,

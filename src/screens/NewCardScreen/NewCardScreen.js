@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { addCard } from 'src/redux/modules/decks';
 import { StyleSheet, Text, View } from 'react-native';
 import { SimpleButton, SingleLineTextInput } from 'src/components';
-import { white } from 'src/utils/colors';
+import { secondaryColor } from 'src/utils/colors';
 
 class NewCardScreen extends Component {
   static propTypes = {
@@ -48,7 +48,7 @@ class NewCardScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: white,
+    backgroundColor: secondaryColor,
     alignItems: `center`
   }
 });

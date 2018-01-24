@@ -5,7 +5,7 @@ import { getDeck } from 'src/redux/modules/decks';
 import { StyleSheet, Text, View } from 'react-native';
 import { SimpleButton } from 'src/components';
 import { getNumberOfCardsString } from 'src/utils/helpers';
-import { grey, black, white } from 'src/utils/colors';
+import { grey, primaryColor, secondaryColor } from 'src/utils/colors';
 
 DeckScreen.propTypes = {
   deck: PropTypes.object.isRequired,
@@ -26,8 +26,8 @@ function DeckScreen(props) {
       <View>
         <SimpleButton
           text="Add Card"
-          textStyle={{ color: black }}
-          buttonStyle={{ backgroundColor: white }}
+          textStyle={{ color: primaryColor }}
+          buttonStyle={{ backgroundColor: secondaryColor }}
           onPress={() => navigate(`NewCard`, { deckId })}
         />
         {props.deck.questions.length > 0 && (
@@ -44,7 +44,7 @@ function DeckScreen(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: white,
+    backgroundColor: secondaryColor,
     alignItems: `center`,
     justifyContent: `space-around`
   },
