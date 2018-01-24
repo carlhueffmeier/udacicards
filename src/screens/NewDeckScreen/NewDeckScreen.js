@@ -19,7 +19,7 @@ class NewDeckScreen extends Component {
   onCreateDeck() {
     const { newDeckTitle } = this.state;
     this.props.createDeck(newDeckTitle);
-    this.props.navigation.goBack();
+    this.props.navigation.navigate(`Deck`, { deckId: newDeckTitle });
   }
 
   render() {
