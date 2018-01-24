@@ -24,10 +24,12 @@ function DeckScreen(props) {
           buttonStyle={{ backgroundColor: white }}
           onPress={() => navigate(`NewCard`, { deckId })}
         />
-        <SimpleButton
-          text="Start Quiz"
-          onPress={() => navigate(`Quiz`, { deckId })}
-        />
+        {props.deck.questions.length > 0 && (
+          <SimpleButton
+            text="Start Quiz"
+            onPress={() => navigate(`Quiz`, { deckId })}
+          />
+        )}
       </View>
     </View>
   );
