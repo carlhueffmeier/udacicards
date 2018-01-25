@@ -1,5 +1,4 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Keyboard } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import {
   DeckListScreen,
@@ -43,6 +42,7 @@ export default StackNavigator(
         backgroundColor: primaryColor
       },
       headerTintColor: backgroundColor
-    }
+    },
+    onTransitionStart: () => Keyboard.dismiss()
   }
 );
